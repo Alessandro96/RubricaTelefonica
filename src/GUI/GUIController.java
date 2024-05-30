@@ -1,12 +1,13 @@
 package GUI;
 
-import Models.ListaPersone;
-
 import javax.swing.*;
 
+import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
+
 public class GUIController {
-    public static void avviaGUI(ListaPersone l) {
-        String []columns = {"Nome", "Cognome", "Telefono"};
-        FinestraPrincipale fp = new FinestraPrincipale(l.formatoTabella(columns), columns);
+    public static void avviaGUI(String[][] data, String[] columns) {
+
+        FinestraPrincipale fp = new FinestraPrincipale(data, columns, "Rubrica Telefonica", SINGLE_SELECTION);
+
     }
 }

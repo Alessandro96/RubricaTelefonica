@@ -20,12 +20,12 @@ public class Persona {
         if(!(obj instanceof Persona)) return false;
         Persona p = (Persona) obj;
         return p.getNome().equals(this.getNome()) && p.getCognome().equals(this.getCognome())
-                && p.getIndirizzo().equals(this.getIndirizzo()) && p.getIndirizzo().equals(this.getTelefono()) && p.getEta() == this.getEta();
+                && p.getIndirizzo().equals(this.getIndirizzo()) && p.getTelefono().equals(this.getTelefono()) && p.getEta() == this.getEta();
     }
 
     @Override
     public String toString(){
-        return this.getNome() + ";" + this.getCognome() + ";" + this.getIndirizzo() + ";" + this.getTelefono() + ";" + this.getEta();
+        return this.getNome() + ";" + this.getCognome() + ";" + this.getIndirizzo() + ";" + this.getTelefono() + ";" + this.getEta() + "\n";
     }
 
     public String getNome() {

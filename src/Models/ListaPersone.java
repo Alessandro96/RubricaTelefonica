@@ -31,25 +31,25 @@ public class ListaPersone {
     @Override
     public String toString(){
         String s = "";
-        for(Persona p : this.getRubrica()) s += p.toString() + "\n";
-        if(!s.isEmpty()) s = s.substring(0, s.length()-1);
+        for(Persona p : this.getRubrica()) s += p.toString();
+        //if(!s.isEmpty()) s = s.substring(0, s.length()-1);
         return s;
     }
 
     public String[][] formatoTabella(String[] columns){
-        String[][] tabella = new String[this.getRubrica().size()][columns.length];
-        for(int i = 0; i<tabella.length; i++){
+        String[][] datiTabella = new String[this.getRubrica().size()][columns.length];
+        for(int i = 0; i<datiTabella.length; i++){
             for(int j = 0; j<columns.length; j++){
                 switch(columns[j]){
-                    case "Nome" -> tabella[i][j] = this.getRubrica().get(i).getNome();
-                    case "Cognome" -> tabella[i][j] = this.getRubrica().get(i).getCognome();
-                    case "Indirizzo" -> tabella[i][j] = this.getRubrica().get(i).getIndirizzo();
-                    case "Telefono" -> tabella[i][j] = this.getRubrica().get(i).getTelefono();
-                    case "Eta" -> tabella[i][j] = "" + this.getRubrica().get(i).getEta();
+                    case "Nome" -> datiTabella[i][j] = this.getRubrica().get(i).getNome();
+                    case "Cognome" -> datiTabella[i][j] = this.getRubrica().get(i).getCognome();
+                    case "Indirizzo" -> datiTabella[i][j] = this.getRubrica().get(i).getIndirizzo();
+                    case "Telefono" -> datiTabella[i][j] = this.getRubrica().get(i).getTelefono();
+                    case "Eta" -> datiTabella[i][j] = "" + this.getRubrica().get(i).getEta();
                 }
             }
         }
-        return tabella;
+        return datiTabella;
     }
 
 }

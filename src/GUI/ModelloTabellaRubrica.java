@@ -26,6 +26,7 @@ public class ModelloTabellaRubrica extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        if(rowIndex<0 || columnIndex<0) return false;
         if(this.getRowCount()>=rowIndex && this.getColumnCount()>=columnIndex) return this.data[rowIndex][columnIndex];
         return null;
     }
