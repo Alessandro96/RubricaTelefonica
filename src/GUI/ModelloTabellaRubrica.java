@@ -32,6 +32,11 @@ public class ModelloTabellaRubrica extends AbstractTableModel {
     }
 
     @Override
+    public String getColumnName(int column){
+        return this.columns[column];
+    }
+
+    @Override
     public boolean isCellEditable(int row, int col){
         return false;
     }
