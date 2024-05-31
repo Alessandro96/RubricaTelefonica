@@ -1,5 +1,7 @@
 package GUI;
 
+import Controllers.GUIController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -59,29 +61,37 @@ public class FinestraPrincipale {
         bottone.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(e.getActionCommand());
                 switch (e.getActionCommand()) {
                     case "Nuovo" -> {
                         FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati();
                     }
                     case "Modifica" -> {
-                        FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati();
+                        if(tabella.getSelectedRow()==-1) rigaNonSelezionata();
+                        else{
+                            FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati();
+                        }
                     }
                     case "Elimina" -> {
-                        String[] responses = {"No","Sì"};
-                        int answer = JOptionPane.showOptionDialog(
-                                null,
-                                "Eliminare la persona " + tabella.getValueAt(tabella.getSelectedRow(), 0) + " " + tabella.getValueAt(tabella.getSelectedRow(), 1) + "?",
-                                "Elimina persona",
-                                JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.ERROR_MESSAGE,
-                                null,
-                                responses,
-                                null);
-                        System.out.println(answer);
+                        String[] responses = {"Sì","No"};
+                        if(tabella.getSelectedRow()==-1) rigaNonSelezionata();
+                        else {
+                            int answer = JOptionPane.showOptionDialog(
+                                    finestra,
+                                    "Eliminare la persona " + tabella.getValueAt(tabella.getSelectedRow(), 0) + " " + tabella.getValueAt(tabella.getSelectedRow(), 1) + "?",
+                                    "Elimina persona",
+                                    JOptionPane.DEFAULT_OPTION,
+                                    JOptionPane.INFORMATION_MESSAGE,
+                                    null,
+                                    responses,
+                                    null);
+                            if (answer == 0){
+                                finestra.dispose();
+                                GUIController.eliminaPersona(tabella.getSelectedRow());
+                            }
+                        }
                     }
                 }
-                for(int i = 0; i< tabella.getColumnCount(); i++) System.out.println(tabella.getValueAt(tabella.getSelectedRow(), i));
+                //for(int i = 0; i< tabella.getColumnCount(); i++) System.out.println(tabella.getValueAt(tabella.getSelectedRow(), i));
             }
         });
 
@@ -90,5 +100,9 @@ public class FinestraPrincipale {
 
     private void mostraFinestra(){
         this.finestra.setVisible(true);
+    }
+
+    private void rigaNonSelezionata(){
+        JOptionPane.showMessageDialog(finestra, "Devi selezionare una riga della tabella", "Avvertenza", JOptionPane.WARNING_MESSAGE);
     }
 }

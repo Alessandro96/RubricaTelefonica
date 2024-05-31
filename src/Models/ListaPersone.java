@@ -24,6 +24,10 @@ public class ListaPersone {
         if(i != -1) this.rubrica.set(i, nuova);
     }
 
+    public Persona getPersona(int i){
+        return this.rubrica.get(i);
+    }
+
     public Vector<Persona> getRubrica(){ return this.rubrica; }
 
     public void setRubrica(Collection<Persona> rubrica){ this.rubrica.addAll(rubrica); }
