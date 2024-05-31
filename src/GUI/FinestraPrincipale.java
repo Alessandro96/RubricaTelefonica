@@ -9,15 +9,14 @@ import java.awt.event.ActionListener;
 
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 
-public class FinestraPrincipale {
+public class FinestraPrincipale implements ActionListener {
 
     private JFrame finestra;
     private JTable tabella;
-    private ModelloTabellaRubrica modello;
 
     public FinestraPrincipale(String[][] data, String[] columns){
         this.inizializzaFinestra(data, columns);
-        this.mostraFinestra();
+        this.finestra.setVisible(true);
     }
 
     private void inizializzaFinestra(String[][] data, String[] columns){
@@ -25,9 +24,8 @@ public class FinestraPrincipale {
         this.finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.finestra.setLayout(new BorderLayout());
 
-        this.modello = new ModelloTabellaRubrica(data, columns);
-        this.tabella = new JTable(this.modello);
-        //this.tabella = creaTabella(data, columns, selection);
+        ModelloTabellaRubrica modello = new ModelloTabellaRubrica(data, columns);
+        this.tabella = new JTable(modello);
         this.tabella.setSelectionMode(SINGLE_SELECTION);
 
         JScrollPane scrollPanel = new JScrollPane(this.tabella);
@@ -45,11 +43,6 @@ public class FinestraPrincipale {
         this.finestra.pack();
     }
 
-    private JTable creaTabella(String[][] data, String[] columns, int selection){
-        this.modello = new ModelloTabellaRubrica(data, columns);
-        return new JTable(this.modello);
-    }
-
     private JButton creaBottone(String testo, String toolTip, String path) {
         JButton bottone = new JButton(testo);
         bottone.setFocusable(false);
@@ -58,51 +51,47 @@ public class FinestraPrincipale {
         bottone.setIcon(icona);
         bottone.setFont(new Font("Times New Roman", Font.BOLD, 20));
 
-        bottone.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switch (e.getActionCommand()) {
-                    case "Nuovo" -> {
-                        FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati();
-                    }
-                    case "Modifica" -> {
-                        if(tabella.getSelectedRow()==-1) rigaNonSelezionata();
-                        else{
-                            FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati();
-                        }
-                    }
-                    case "Elimina" -> {
-                        String[] responses = {"Sì","No"};
-                        if(tabella.getSelectedRow()==-1) rigaNonSelezionata();
-                        else {
-                            int answer = JOptionPane.showOptionDialog(
-                                    finestra,
-                                    "Eliminare la persona " + tabella.getValueAt(tabella.getSelectedRow(), 0) + " " + tabella.getValueAt(tabella.getSelectedRow(), 1) + "?",
-                                    "Elimina persona",
-                                    JOptionPane.DEFAULT_OPTION,
-                                    JOptionPane.INFORMATION_MESSAGE,
-                                    null,
-                                    responses,
-                                    null);
-                            if (answer == 0){
-                                finestra.dispose();
-                                GUIController.eliminaPersona(tabella.getSelectedRow());
-                            }
-                        }
-                    }
-                }
-                //for(int i = 0; i< tabella.getColumnCount(); i++) System.out.println(tabella.getValueAt(tabella.getSelectedRow(), i));
-            }
-        });
+        bottone.addActionListener(this);
 
         return bottone;
     }
 
-    private void mostraFinestra(){
-        this.finestra.setVisible(true);
-    }
-
     private void rigaNonSelezionata(){
         JOptionPane.showMessageDialog(finestra, "Devi selezionare una riga della tabella", "Avvertenza", JOptionPane.WARNING_MESSAGE);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "Nuovo" -> {
+                FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra);
+            }
+            case "Modifica" -> {
+                if(this.tabella.getSelectedRow()==-1) rigaNonSelezionata();
+                else{
+                    FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra);
+                }
+            }
+            case "Elimina" -> {
+                String[] responses = {"Sì","No"};
+                if(this.tabella.getSelectedRow()==-1) rigaNonSelezionata();
+                else {
+                    int answer = JOptionPane.showOptionDialog(
+                            this.finestra,
+                            "Eliminare la persona " + this.tabella.getValueAt(this.tabella.getSelectedRow(), 0) + " " + this.tabella.getValueAt(this.tabella.getSelectedRow(), 1) + "?",
+                            "Elimina persona",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            responses,
+                            null);
+                    if (answer == 0){
+                        this.finestra.dispose();
+                        GUIController.eliminaPersona(this.tabella.getSelectedRow());
+                    }
+                }
+            }
+        }
+        //for(int i = 0; i< tabella.getColumnCount(); i++) System.out.println(tabella.getValueAt(tabella.getSelectedRow(), i));
     }
 }
