@@ -64,13 +64,11 @@ public class FinestraPrincipale implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Nuovo" -> {
-                FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra);
+                FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra, -1);
             }
             case "Modifica" -> {
                 if(this.tabella.getSelectedRow()==-1) rigaNonSelezionata();
-                else{
-                    FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra);
-                }
+                else {FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra, this.tabella.getSelectedRow());}
             }
             case "Elimina" -> {
                 String[] responses = {"Sì","No"};
@@ -87,11 +85,10 @@ public class FinestraPrincipale implements ActionListener {
                             null);
                     if (answer == 0){
                         this.finestra.dispose();
-                        GUIController.eliminaPersona(this.tabella.getSelectedRow());
+                        GUIController.getInstance().eliminaPersona(this.tabella.getSelectedRow());
                     }
                 }
             }
         }
-        //for(int i = 0; i< tabella.getColumnCount(); i++) System.out.println(tabella.getValueAt(tabella.getSelectedRow(), i));
     }
 }
