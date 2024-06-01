@@ -1,6 +1,6 @@
 package GUI;
 
-import Controllers.GUIController;
+import Controllers.ControllerGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,18 +57,19 @@ public class FinestraPrincipale implements ActionListener {
     }
 
     private void rigaNonSelezionata(){
-        JOptionPane.showMessageDialog(finestra, "Devi selezionare una riga della tabella", "Avvertenza", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(finestra, "Devi selezionare una riga della tabella", "Errore", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Nuovo" -> {
-                FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra, -1);
+                EditorPersona inserimentoDati = new EditorPersona(this.finestra, -1);
             }
             case "Modifica" -> {
                 if(this.tabella.getSelectedRow()==-1) rigaNonSelezionata();
-                else {FinestraInserimentoDati inserimentoDati = new FinestraInserimentoDati(this.finestra, this.tabella.getSelectedRow());}
+                else {
+                    EditorPersona inserimentoDati = new EditorPersona(this.finestra, this.tabella.getSelectedRow());}
             }
             case "Elimina" -> {
                 String[] responses = {"Sì","No"};
@@ -85,7 +86,7 @@ public class FinestraPrincipale implements ActionListener {
                             null);
                     if (answer == 0){
                         this.finestra.dispose();
-                        GUIController.getInstance().eliminaPersona(this.tabella.getSelectedRow());
+                        ControllerGUI.getInstance().eliminaPersona(this.tabella.getSelectedRow());
                     }
                 }
             }

@@ -2,14 +2,14 @@ package Controllers;
 
 import GUI.FinestraPrincipale;
 
-public class GUIController {
+public class ControllerGUI {
 
-    private static GUIController instance = null;
+    private static ControllerGUI instance = null;
 
-    private GUIController(){}
+    private ControllerGUI(){}
 
-    public static synchronized GUIController getInstance(){
-        if(instance == null) instance = new GUIController();
+    public static synchronized ControllerGUI getInstance(){
+        if(instance == null) instance = new ControllerGUI();
         return instance;
     }
     public void avviaGUI(String[][] data, String[] columns) {
@@ -28,5 +28,5 @@ public class GUIController {
         GestoreRubrica.getInstance().modificaPersona(nome, cognome, indirizzo, telefono, eta, i);
     }
 
-    public String[] getPersona(int i){ return GestoreRubrica.getInstance().getPersona(i); }
+    public String[] getPersona(int i){ return GestoreRubrica.getInstance().getStringArrayPersona(i); }
 }

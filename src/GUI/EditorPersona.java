@@ -5,24 +5,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Controllers.GUIController;
+import Controllers.ControllerGUI;
 
-public class FinestraInserimentoDati implements ActionListener{
+public class EditorPersona implements ActionListener{
     private JDialog finestra;
 
     private JFrame finestraPrincipale;
     private int selectedRow;
     private JTextField tNome, tCognome, tIndirizzo, tTelefono, tEta;
 
-    public FinestraInserimentoDati(JFrame frame, int selectedRow){
+    public EditorPersona(JFrame frame, int selectedRow){
         this.finestraPrincipale = frame;
         this.selectedRow = selectedRow;
-        String[] personaSelezionata = GUIController.getInstance().getPersona(selectedRow);
+        String[] personaSelezionata = ControllerGUI.getInstance().getPersona(selectedRow);
         JPanel buttonsPanel = new JPanel();
         JPanel dataPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         this.finestra = new JDialog(frame, false);
+        this.finestra.setTitle("editor-persona");
         this.finestra.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
 
         creaLabel("Nome", 0, 0, gbc, dataPanel);
@@ -99,8 +100,8 @@ public class FinestraInserimentoDati implements ActionListener{
                 }
                 this.finestra.dispose();
                 this.finestraPrincipale.dispose();
-                if(this.selectedRow == -1) GUIController.getInstance().aggiungiPersona(this.tNome.getText(), this.tCognome.getText(), this.tIndirizzo.getText(), this.tTelefono.getText(), eta);
-                else GUIController.getInstance().modificaPersona(this.tNome.getText(), this.tCognome.getText(), this.tIndirizzo.getText(), this.tTelefono.getText(), eta, this.selectedRow);
+                if(this.selectedRow == -1) ControllerGUI.getInstance().aggiungiPersona(this.tNome.getText(), this.tCognome.getText(), this.tIndirizzo.getText(), this.tTelefono.getText(), eta);
+                else ControllerGUI.getInstance().modificaPersona(this.tNome.getText(), this.tCognome.getText(), this.tIndirizzo.getText(), this.tTelefono.getText(), eta, this.selectedRow);
             }
             case "Annulla" -> this.finestra.dispose();
         }
