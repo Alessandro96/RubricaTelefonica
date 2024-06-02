@@ -22,6 +22,8 @@ public class FinestraPrincipale implements ActionListener {
     private void inizializzaFinestra(String[][] data, String[] columns){
         this.finestra = new JFrame("Rubrica Telefonica");
         this.finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("icone/rubrica.png");
+        this.finestra.setIconImage(iconaFinestra);
         this.finestra.setLayout(new BorderLayout());
 
         ModelloTabellaRubrica modello = new ModelloTabellaRubrica(data, columns);

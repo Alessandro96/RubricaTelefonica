@@ -1,8 +1,6 @@
 package Models;
 
-import java.io.*;
 import java.util.Collection;
-import java.util.Scanner;
 import java.util.Vector;
 
 public class ListaPersone {

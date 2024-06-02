@@ -1,8 +1,6 @@
 package GUI;
 
 import javax.swing.table.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class ModelloTabellaRubrica extends AbstractTableModel {
 

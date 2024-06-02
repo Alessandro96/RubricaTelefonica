@@ -1,6 +1,7 @@
 package Controllers;
 
-import Models.*;
+import Models.ListaPersone;
+import Models.Persona;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class GestoreRubrica {
-    private ListaPersone listaPersone;
+    private ListaPersone listaPersone = new ListaPersone();
     private static GestoreRubrica instance = null;
     private final String path = "informazioni.txt";
     private final String []columns = {"Nome", "Cognome", "Telefono"};
@@ -21,11 +22,9 @@ public class GestoreRubrica {
     }
 
     public void run(){
-        this.listaPersone = new ListaPersone();
-
         //Codice relativo alla persistenza
         try {
-            //GestoreRubrica.getInstance().popolaFile();
+            GestoreRubrica.getInstance().popolaFile();
             GestoreRubrica.getInstance().leggiDaFile();
         }catch(IOException e){System.out.println(e.getMessage());}
         System.out.println(this.listaPersone);
@@ -34,7 +33,11 @@ public class GestoreRubrica {
         ControllerGUI.getInstance().avviaGUI(listaPersone.formatoTabella(columns), columns);
     }
 
-    private void popolaFile(){
+    public String[] getColumns(){ return this.columns; }
+
+    public ListaPersone getListaPersone(){ return this.listaPersone; }
+
+    public void popolaFile(){
         Persona gianni = new Persona("Gianni", "Sperti", "Via della pace 9", "3334449876", 57);
         Persona gianniNuovo = new Persona("Gianni", "Sperti", "Via Cavour 74", "0000000000", 57);
         Persona jematria = new Persona("Jematria", "Joshua", "Lucky road 79", "1978005698", 12);
@@ -53,7 +56,7 @@ public class GestoreRubrica {
         }catch(IOException e){System.out.println(e.getMessage());}
     }
 
-    private void leggiDaFile() throws IOException{
+    public void leggiDaFile() throws IOException{
         File file = new File(this.path);
         int eta;
         String[] split;
@@ -91,7 +94,10 @@ public class GestoreRubrica {
             scanner.close();
             print.close();
         }catch(IOException e){System.out.println(e.getMessage()+"\nNon è stato possibile aggiungere la persona.");}
-        ControllerGUI.getInstance().avviaGUI(this.listaPersone.formatoTabella(this.columns), this.columns);
+        ControllerGUI controller = ControllerGUI.getInstance();
+        controller.setData(this.listaPersone.formatoTabella(this.columns));
+        controller.setColumns(this.columns);
+        controller.avviaFinestraPrincipale();
     }
 
     public void aggiungiPersona(String nome, String cognome, String indirizzo, String telefono, int eta){
@@ -110,7 +116,10 @@ public class GestoreRubrica {
             print.close();
         }catch(IOException e){System.out.println(e.getMessage()+"\nNon è stato possibile aggiungere la persona.");}
         this.listaPersone.aggiungiPersona(persona);
-        ControllerGUI.getInstance().avviaGUI(this.listaPersone.formatoTabella(this.columns), this.columns);
+        ControllerGUI controller = ControllerGUI.getInstance();
+        controller.setData(this.listaPersone.formatoTabella(this.columns));
+        controller.setColumns(this.columns);
+        controller.avviaFinestraPrincipale();
     }
 
     public void modificaPersona(String nome, String cognome, String indirizzo, String telefono, int eta, int i){
@@ -137,7 +146,10 @@ public class GestoreRubrica {
             print.close();
         }catch(IOException e){System.out.println(e.getMessage()+"\nNon è stato possibile aggiungere la persona.");}
         this.listaPersone.modificaPersona(vecchia, nuova);
-        ControllerGUI.getInstance().avviaGUI(this.listaPersone.formatoTabella(this.columns), this.columns);
+        ControllerGUI controller = ControllerGUI.getInstance();
+        controller.setData(this.listaPersone.formatoTabella(this.columns));
+        controller.setColumns(this.columns);
+        controller.avviaFinestraPrincipale();
     }
 
     public String[] getStringArrayPersona(int i){

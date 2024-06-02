@@ -21,10 +21,13 @@ public class EditorPersona implements ActionListener{
         JPanel buttonsPanel = new JPanel();
         JPanel dataPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(0, 5, 0, 5);
 
         this.finestra = new JDialog(frame, false);
         this.finestra.setTitle("editor-persona");
         this.finestra.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("icone/rubrica.png");
+        this.finestra.setIconImage(iconaFinestra);
 
         creaLabel("Nome", 0, 0, gbc, dataPanel);
         creaLabel("Cognome", 0, 1, gbc, dataPanel);
@@ -46,7 +49,9 @@ public class EditorPersona implements ActionListener{
         JPanel titlePanel = new JPanel();
         JLabel titolo = new JLabel("Inserisci i dati della persona");
         titolo.setFont(new Font("Times New Roman", Font.BOLD, 24));
-        titlePanel.add(titolo, BorderLayout.CENTER);
+        titolo.setVerticalAlignment(JLabel.CENTER);
+        titolo.setHorizontalAlignment(JLabel.CENTER);
+        titlePanel.add(titolo);
 
         this.finestra.add(buttonsPanel, BorderLayout.SOUTH);
         this.finestra.add(dataPanel, BorderLayout.CENTER);
@@ -83,6 +88,8 @@ public class EditorPersona implements ActionListener{
         JLabel label = new JLabel(testo);
         label.setPreferredSize(new Dimension(100,30));
         label.setFont(new Font("Times New Roman",Font.PLAIN,16));
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setVerticalAlignment(JLabel.CENTER);
         gbc.gridx = x;
         gbc.gridy = y;
         panel.add(label, gbc);
