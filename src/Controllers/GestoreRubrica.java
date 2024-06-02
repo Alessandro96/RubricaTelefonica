@@ -21,18 +21,6 @@ public class GestoreRubrica {
         return instance;
     }
 
-    public void run(){
-        //Codice relativo alla persistenza
-        try {
-            GestoreRubrica.getInstance().popolaFile();
-            GestoreRubrica.getInstance().leggiDaFile();
-        }catch(IOException e){System.out.println(e.getMessage());}
-        System.out.println(this.listaPersone);
-
-        //Codice relativo all'interfaccia grafica
-        ControllerGUI.getInstance().avviaGUI(listaPersone.formatoTabella(columns), columns);
-    }
-
     public String[] getColumns(){ return this.columns; }
 
     public ListaPersone getListaPersone(){ return this.listaPersone; }
@@ -93,7 +81,7 @@ public class GestoreRubrica {
             print.append(s);
             scanner.close();
             print.close();
-        }catch(IOException e){System.out.println(e.getMessage()+"\nNon è stato possibile aggiungere la persona.");}
+        }catch(IOException e){System.out.println(e.getMessage()+"\nNon è stato possibile eliminare la persona.");}
         ControllerGUI controller = ControllerGUI.getInstance();
         controller.setData(this.listaPersone.formatoTabella(this.columns));
         controller.setColumns(this.columns);
@@ -144,7 +132,7 @@ public class GestoreRubrica {
             print.append(s);
             scanner.close();
             print.close();
-        }catch(IOException e){System.out.println(e.getMessage()+"\nNon è stato possibile aggiungere la persona.");}
+        }catch(IOException e){System.out.println(e.getMessage()+"\nNon è stato possibile modificare la persona.");}
         this.listaPersone.modificaPersona(vecchia, nuova);
         ControllerGUI controller = ControllerGUI.getInstance();
         controller.setData(this.listaPersone.formatoTabella(this.columns));

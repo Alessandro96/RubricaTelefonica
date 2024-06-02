@@ -36,7 +36,6 @@ public class ListaPersone {
     public String toString(){
         String s = "";
         for(Persona p : this.getRubrica()) s += p.toString();
-        //if(!s.isEmpty()) s = s.substring(0, s.length()-1);
         return s;
     }
 
