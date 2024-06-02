@@ -8,6 +8,7 @@ public class AvvioApplicazione {
         GestoreRubrica gr = GestoreRubrica.getInstance();
         GestoreUtenti gu = GestoreUtenti.getInstance();
         ControllerGUI cgui = ControllerGUI.getInstance();
+        //ControllerDB cdb = ControllerDB.getInstance();
 
         //Codice relativo alla persistenza
         try {
