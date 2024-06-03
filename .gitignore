@@ -2,6 +2,7 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+**/src/META-INF/
 
 ### Eclipse ###
 .apt_generated
@@ -29,4 +30,4 @@ bin/
 .DS_Store
 
 .idea
-informazioni.txt
+src/main/resources/file/informazioni.txt

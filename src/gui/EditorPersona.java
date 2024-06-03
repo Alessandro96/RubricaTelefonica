@@ -1,11 +1,11 @@
-package GUI;
+package gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Controllers.ControllerGUI;
+import controllers.ControllerGUI;
 
 public class EditorPersona implements ActionListener{
     private JDialog finestra;
@@ -26,7 +26,7 @@ public class EditorPersona implements ActionListener{
         this.finestra = new JDialog(frame, false);
         this.finestra.setTitle("editor-persona");
         this.finestra.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
-        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("icone/rubrica.png");
+        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("src/main/resources/icone/rubrica.png");
         this.finestra.setIconImage(iconaFinestra);
 
         creaLabel("Nome", 0, 0, gbc, dataPanel);
@@ -41,9 +41,9 @@ public class EditorPersona implements ActionListener{
         this.tTelefono = creaTextField(personaSelezionata[3], 1, 3, gbc, dataPanel);
         this.tEta = creaTextField(personaSelezionata[4], 1, 4, gbc, dataPanel);
 
-        JButton salva = this.creaBottone("Salva", "Salva le modifiche", "icone/salva.png");
+        JButton salva = this.creaBottone("Salva", "Salva le modifiche", "src/main/resources/icone/salva.png");
         buttonsPanel.add(salva);
-        JButton annulla = this.creaBottone("Annulla", "Annulla le modifiche", "icone/annulla.png");
+        JButton annulla = this.creaBottone("Annulla", "Annulla le modifiche", "src/main/resources/icone/annulla.png");
         buttonsPanel.add(annulla);
 
         JPanel titlePanel = new JPanel();

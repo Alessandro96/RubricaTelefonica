@@ -1,4 +1,4 @@
-package Models;
+package models;
 public class Persona {
     private String nome;
     private String cognome;

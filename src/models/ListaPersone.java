@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 import java.util.Collection;
 import java.util.Vector;
@@ -29,8 +29,6 @@ public class ListaPersone {
     }
 
     public Vector<Persona> getRubrica(){ return this.rubrica; }
-
-    public void setRubrica(Collection<Persona> rubrica){ this.rubrica.addAll(rubrica); }
 
     @Override
     public String toString(){

@@ -1,6 +1,6 @@
-package GUI;
+package gui;
 
-import Controllers.ControllerGUI;
+import controllers.ControllerGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class FinestraPrincipale implements ActionListener {
     private void inizializzaFinestra(String[][] data, String[] columns){
         this.finestra = new JFrame("Rubrica Telefonica");
         this.finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("icone/rubrica.png");
+        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("src/main/resources/icone/rubrica.png");
         this.finestra.setIconImage(iconaFinestra);
         this.finestra.setLayout(new BorderLayout());
 
@@ -35,11 +35,11 @@ public class FinestraPrincipale implements ActionListener {
 
         JPanel buttonsPanel = new JPanel();
         this.finestra.add(buttonsPanel, BorderLayout.SOUTH);
-        JButton nuovo = creaBottone("Nuovo", "Aggiungi un contatto", "icone/nuovo.png");
+        JButton nuovo = creaBottone("Nuovo", "Aggiungi un contatto", "src/main/resources/icone/nuovo.png");
         buttonsPanel.add(nuovo);
-        JButton modifica = creaBottone("Modifica", "Modifica un contatto", "icone/modifica.png");
+        JButton modifica = creaBottone("Modifica", "Modifica un contatto", "src/main/resources/icone/modifica.png");
         buttonsPanel.add(modifica);
-        JButton elimina = creaBottone("Elimina", "Elimina un contatto", "icone/elimina.png");
+        JButton elimina = creaBottone("Elimina", "Elimina un contatto", "src/main/resources/icone/elimina.png");
         buttonsPanel.add(elimina);
 
         this.finestra.pack();

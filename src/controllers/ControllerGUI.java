@@ -1,7 +1,7 @@
-package Controllers;
+package controllers;
 
-import GUI.FinestraPrincipale;
-import GUI.Login;
+import gui.FinestraPrincipale;
+import gui.Login;
 
 public class ControllerGUI {
 
