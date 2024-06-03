@@ -1,7 +1,7 @@
-package Controllers;
+package controllers;
 
-import Models.ListaPersone;
-import Models.Persona;
+import models.ListaPersone;
+import models.Persona;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class GestoreRubrica {
     private ListaPersone listaPersone = new ListaPersone();
     private static GestoreRubrica instance = null;
-    private final String path = "informazioni.txt";
+    private final String path = "src/main/resources/file/informazioni.txt";
     private final String []columns = {"Nome", "Cognome", "Telefono"};
 
     private GestoreRubrica(){}

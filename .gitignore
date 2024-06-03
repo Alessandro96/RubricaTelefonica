@@ -29,4 +29,4 @@ bin/
 .DS_Store
 
 .idea
-*.txt
+src/main/resources/file/informazioni.txt

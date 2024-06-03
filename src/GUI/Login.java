@@ -1,6 +1,6 @@
 package GUI;
 
-import Controllers.ControllerGUI;
+import controllers.ControllerGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ public class Login implements ActionListener {
     public Login(){
         this.finestraLogin = new JDialog();
         this.finestraLogin.setTitle("Login");
-        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("icone/rubrica.png");
+        Image iconaFinestra = Toolkit.getDefaultToolkit().getImage("src/main/resources/icone/rubrica.png");
         this.finestraLogin.setIconImage(iconaFinestra);
         this.finestraLogin.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         GridBagConstraints gbc = new GridBagConstraints();
@@ -29,7 +29,7 @@ public class Login implements ActionListener {
         this.password = creaTextField(1, 1, gbc, dataPanel);
 
         JPanel buttonPanel = new JPanel();
-        creaBottone("Avanti", "Esegui il login", "icone/login.png", buttonPanel);
+        creaBottone("Avanti", "Esegui il login", "src/main/resources/icone/login.png", buttonPanel);
 
         JPanel titlePanel = new JPanel();
         JLabel titolo = new JLabel("Accedi");

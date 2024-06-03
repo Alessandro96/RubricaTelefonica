@@ -1,7 +1,7 @@
-package Controllers;
+package controllers;
 
-import Models.ListaUtenti;
-import Models.Utente;
+import models.ListaUtenti;
+import models.Utente;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class GestoreUtenti {
 
     private ListaUtenti listaUtenti = new ListaUtenti();
-    private final String path = "utenti.txt";
+    private final String path = "src/main/resources/file/utenti.txt";
     private static GestoreUtenti instance = null;
     private GestoreUtenti(){
     }

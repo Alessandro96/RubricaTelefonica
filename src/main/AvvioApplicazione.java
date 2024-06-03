@@ -1,15 +1,20 @@
-package Controllers;
+package main;
+
+import controllers.ControllerGUI;
+import controllers.GestoreRubrica;
+import controllers.GestoreUtenti;
 
 import java.io.IOException;
 
 public class AvvioApplicazione {
 
     public static void run(){
+        //Inizializzazione controllers
         GestoreRubrica gr = GestoreRubrica.getInstance();
         GestoreUtenti gu = GestoreUtenti.getInstance();
         ControllerGUI cgui = ControllerGUI.getInstance();
 
-        //Codice relativo alla persistenza
+        //Lettura da file
         try {
             //gr.popolaFile();
             gr.leggiDaFile();
@@ -17,7 +22,7 @@ public class AvvioApplicazione {
             gu.leggiDaFile();
         }catch(IOException e){System.out.println(e.getMessage());}
 
-        //Codice relativo all'interfaccia grafica
+        //Avvio interfaccia grafica
         cgui.avviaGUI(gr.getListaPersone().formatoTabella(gr.getColumns()), gr.getColumns());
     }
 }
